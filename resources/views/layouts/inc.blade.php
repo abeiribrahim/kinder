@@ -12,7 +12,7 @@
         @include('includes.classes')
         @include('includes.appointment')
         @include('includes.team')
-        @include('includes.testimonial')
+     @include('includes.testimonial')
         @include('includes.footer')
  @include('includes.js')
  @section('title')
