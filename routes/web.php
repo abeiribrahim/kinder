@@ -26,6 +26,11 @@ Route::get('/', function () {
 
 ////////////////////////////////////////////////////////////////////////////////
 //Route::get('appointment',[AppointmentController::class,'index'])->name('appointment');
+Route::group(
+    [
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
 Route::post('appointment',[AppointmentController::class,'create'])->name('appointment');
 Route::post('storeappointment',[AppointmentController::class,'store'])->name('storeappointment');
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,3 +50,4 @@ Route::get('testimonial', [KinderController::class,'index'])->name('testimonial'
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    });

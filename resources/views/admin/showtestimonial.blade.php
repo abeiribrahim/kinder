@@ -1,3 +1,4 @@
+@include('admin.includes.nav')
 <!DOCTYPE html>
 <html lang="en">
 <head>

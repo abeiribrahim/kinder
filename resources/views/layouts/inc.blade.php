@@ -1,4 +1,7 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<body>
 
 
 
@@ -18,3 +21,6 @@
  @section('title')
  kinder Home
  @endsection
+ </body> 
+
+</html>
