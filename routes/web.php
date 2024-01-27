@@ -1,9 +1,12 @@
 <?php
+use App\Mail\DemoMail;
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\KinderController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,28 +29,31 @@ Route::get('/', function () {
 
 ////////////////////////////////////////////////////////////////////////////////
 //Route::get('appointment',[AppointmentController::class,'index'])->name('appointment');
-Route::group(
-    [
-    'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ], function(){
-Route::post('appointment',[AppointmentController::class,'create'])->name('appointment');
-Route::post('storeappointment',[AppointmentController::class,'store'])->name('storeappointment');
+
+
+ Route::get('kinder',[KinderController::class,'index'])->name('kinder');
+ Route::post('kinder', [KinderController::class,'store'])->name('kinder');
+ Route::post('appointment',[AppointmentController::class,'store'])->name('appointment');
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get('calltoaction',[KinderController::class,'calltoaction'])->name('calltoaction');
 Route::get('classes',[KinderController::class,'classes'])->name('classes');
-Route::get('contact',[KinderController::class,'contact'])->name('contact');
+///////////////////////////////////////////////////////////
+Route::get('contact', [ContactController::class,'create'])->name('contact');
+Route::post('contact', [ContactController::class,'store'])->name('contact');
+Route::post('contact', [KinderController::class,'sendemails'])->name('contact');
+/////////////////////////////////////////////////////////////////////////
 Route::get('about',[KinderController::class,'about'])->name('about');
 Route::get('pages',[KinderController::class,'about'])->name('pages');
 Route::get('facility', [KinderController::class,'facility'])->name('facility');
 Route::get('team', [KinderController::class,'team'])->name('team');
 ///////////////////////////////////////////////////////////////////////////
-Route::get('kinder', [KinderController::class,'kinder'])->name('kinder');
-Route::post('kinder', [KinderController::class,'store'])->name('kinder');
+Route::get('testimonial', [KinderController::class,'testimonial'])->name('testimonial');
+Route::get('storetestimonial', [KinderController::class,'storetestimonial'])->name('storetestimonial');
+
 //////////////////////////////////////////////////////////////////////////
-Route::get('testimonial', [KinderController::class,'index'])->name('testimonial');
+Route::get('appointment', [KinderController::class,'appointment'])->name('appointment');
 ////////////////////////////////////////////////////////////////////////////
+Route::get('testimonial', [KinderController::class,'testimonial'])->name('testimonial');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    });
+Route::get('/home', [App\Http\Controllers\HomeController::class,'index'])->name('home');

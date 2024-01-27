@@ -16,10 +16,18 @@ class DemoMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public $data;
+    public  $data ;
     public function __construct($data)
     {
-       $this->data=$data;
+        $this->data = $data;
+    
+    }
+
+      public function build()
+   {
+       return $this->markdown('emails.sample')->
+      subject(config('app.name').'','contact us')
+           ->view('emails.sample');
     }
 
     /**
@@ -28,10 +36,10 @@ class DemoMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address($this->data['email'], $this->data['name']),
-            subject: $this->data['subject'] . ' - Contact Us',
-            
-        );
+            from:new Address('abeir@example.com','abeir')
+           
+              
+            );
     }
 
     /**
@@ -39,11 +47,12 @@ class DemoMail extends Mailable
      */
     public function content(): Content
     {
-        return new Content(
-            markdown: 'emails.sample',
-            with:[
-                $this->data,
-            ]
+
+            return new Content(
+                markdown:'emails.sample',
+                with:[
+                    $this->data,
+                ]
            
         );
     }

@@ -7,17 +7,20 @@
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    @foreach($teachers as $teacher)
                         <div class="team-item position-relative">
-                            <img class="img-fluid rounded-circle w-75" src="{{asset('assets/img/team-1.jpg')}}" alt="">
+                            <img class="img-fluid rounded-circle w-75" src="{{asset('assets/img/'.$teacher->image)}}" alt="">
                             <div class="team-text">
-                                <h3>Full Name</h3>
-                                <p>Designation</p>
+
+                                <h3>{{($teacher->tname)}}</h3>
+                                <p>{{($teacher->occupation)}}</p>
                                 <div class="d-flex align-items-center">
                                     <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                                     <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-square btn-primary  mx-1" href=""><i class="fab fa-instagram"></i></a>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                   

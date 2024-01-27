@@ -1,27 +1,30 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\models\Contact;
 use Illuminate\Http\Request;
-use App\models\Appointment;
-class AppointmentController extends Controller
+
+class ContactController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
-       // 
-        $appointments=Appointment::get();
-        return view('admin.indexappointment',compact('appointments'));
+    { $contacts = Contact::paginate(3);
+        return view('admin.indexmsg', compact('contacts'));
+     
     }
+    
+   
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        return view('appointment');
+    { 
+        return view('contact');
     }
 
     /**
@@ -29,16 +32,9 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'gname'=>'required|string|max:50',
-            'gmail'=> 'required|string',
-            'cname'=> 'required|string',
-            'cage' => 'required|string',
-            'message' => 'required|string',
-            
-           ]);
-           Appointment::create($data);
-       return redirect('appointment');
+        
+        //
+       
     }
 
     /**
@@ -46,8 +42,9 @@ class AppointmentController extends Controller
      */
     public function show(string $id)
     {
-        $appointments = Appointment::findOrFail($id);
-        return view ('admin.showappointment', compact('appointments'));
+        $contacts= Contact::findOrFail($id);
+       $contacts->update(['unread_count' => 1]);
+       return view('admin.showmsg', compact('contacts'));
     }
 
     /**
@@ -71,8 +68,13 @@ class AppointmentController extends Controller
      */
     public function destroy(string $id)
     {
-        Appointment::where('id',$id)->delete();
-        
-        return redirect('admin.indexappointment');
+        Contact::where('id', $id)->delete();
+        return redirect('admin/indexmsg');
+    }
+    public function showmsg(string $id)
+    {
+       $msg= Contact::findOrFail($id);
+       $msg->update(['unread_count' => 1]);
+       return view('emails.sample', compact('msg'));
     }
 }

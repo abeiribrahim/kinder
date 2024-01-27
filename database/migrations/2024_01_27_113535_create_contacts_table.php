@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string ('gname',50);
-            $table->string('gmail',50);
-            $table->string('cname',50);
-            $table->integer ('cage') ;
+            $table->string('from');
+            $table->string('email');
+            $table->string('subject');
             $table->longText ('message');
+            $table->boolean('unread_count')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('contacts');
     }
 };

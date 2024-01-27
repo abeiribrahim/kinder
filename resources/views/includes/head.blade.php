@@ -29,7 +29,6 @@
 
     <!-- Template Stylesheet -->
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
-    <li><a href="{{ LaravelLocalization::getLocalizedURL('en') }}">English</a></li>
-   <li><a href="{{ LaravelLocalization::getLocalizedURL('ar') }}">عربي</a></li>
+   
 
 </head>

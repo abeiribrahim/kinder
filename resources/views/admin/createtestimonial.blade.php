@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container">
-  <h2>Add new carTestimonial</h2>
+  <h2>Add new Testimonial</h2>
   <form action="{{route('storetestimonial')}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group">

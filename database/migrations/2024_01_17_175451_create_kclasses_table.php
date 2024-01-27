@@ -21,6 +21,7 @@ return new class extends Migration
             $table->tinyInteger('price');
             $table->boolean('active');
             $table->string('class_image',100);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -301,7 +301,7 @@
       <tr>
         <td>&nbsp;</td>
         <td class="container">
-          <div class="content">{{$data['message']}}
+          <div class="content">
 
             <!-- START CENTERED WHITE CONTAINER -->
             <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
@@ -311,7 +311,9 @@
               <tr>
                 <td class="wrapper">
                   <p>Hi there</p>
-                  <p>Sometimes you just want to send a simple HTML email with a simple design and clear call to action. This is it.</p>
+                  <p>{{$data['from']}}</p>
+                  <p>{{$data['email']}}</p>
+                  <p>{{$data['message']}}</p>.</p>
                   <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                     <tbody>
                       <tr>

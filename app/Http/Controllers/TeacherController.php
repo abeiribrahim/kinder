@@ -96,6 +96,8 @@ class TeacherController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Teacher::where('id',$id)->delete();
+        
+        return redirect('admin.indexteacher');
     }
 }
